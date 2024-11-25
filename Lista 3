@@ -1,0 +1,436 @@
+//EXERCÍCIO 1
+ #include <stdio.h>
+//marina cristini
+typedef struct {
+double peso;
+int idade;
+double altura;
+} pessoa; //criamos uma struct(conjunto de diversas variaveis com tipos diferentes) com o
+//nome da pessoa que possui as seguites varaiveis: peso, idade e altura
+
+void coletarDados(Pessoa pessoas[], int numPessoas) {
+for (int i = 0; i < numPessoas; i++) {
+printf("Digite a idade da pessoa %d: ", i + 1);
+scanf("%d", &pessoas[i].idade);
+printf("Digite a altura da pessoa %lf (em metros): ", i + 1);
+scanf("%lf", &pessoas[i].altura);
+printf("Digite o peso da pessoa %lf (em quilogramas): ", i + 1);
+scanf("%lf", &pessoas[i].peso);
+} //função para imprimir e coletar os dados
+}
+int main(){
+pessoa pessoas[5], p1;//ligando o struct com um vetor ;
+pessoas[0].peso=80.6;//passando as infos do peso do struct
+pessoas[0].idade=40;//infos idade
+pessoas[0].altura=1.70;//infos altura todas passadas de forma manual
+p1=pessoas[0];//pessoa 1 é a posição 0 do vetor
+
+if(p1.idade>20){
+p1.idade++;//poem um a mais na idade para as seguintes posições do vetor
+pessoas[1]=pessoas[0];//pessoa de posição 1 recebe o mesmo valor que a 0
+coletarDados(pessoas, 5);
+return 0;
+}
+}
+
+
+
+//EXERCÍCIO 2
+#include <stdio.h> // Biblioteca para entrada e saída
+#include <string.h> // Biblioteca para manipular strings
+#include <locale.h> // Biblioteca para definir localização
+
+// marina cristini 
+typedef struct {
+char modelo[50]; // Modelo do carro
+int ano; // Ano do carro
+double preco; // Preço do carro
+} Carro; // Define a estrutura Carro
+void modificarPreco(Carro *c, double novoPreco) {
+c->preco = novoPreco; // Atualiza o preço do carro
+}
+
+void imprimirCarro(Carro *c) {
+printf("Modelo: %s\n", c->modelo); // Mostra o modelo
+printf("Ano: %d\n", c->ano); // Mostra o ano
+printf("Preço: R$ %.2lf\n", c->preco); // Mostra o preço
+}
+
+int main() {
+setlocale(LC_ALL, "portuguese"); // Define a linguagem para português
+Carro carro1; // Cria um carro
+strcpy(carro1.modelo, "Xyz"); // Define o modelo como "Xyz"
+carro1.ano = 2020; // Define o ano como 2020
+carro1.preco = 90000.00; // Define o preço como 90000.00
+printf("Dados antes da modificação:\n");
+imprimirCarro(&carro1); // Mostra dados iniciais
+modificarPreco(&carro1, 115000.00); // Atualiza o preço para 115000.00
+printf("\nDados após a modificação do preço:\n");
+imprimirCarro(&carro1); // Mostra dados atualizados
+return 0;
+}
+
+
+
+//EXERCÍCIO 3
+#include <stdio.h> // Biblioteca
+//marina cristini
+
+int calcularResultado(int v[], int n); // Declara a função calcularResultado.
+int main() {
+int vetor[5], i, resultado; // Declara o vetor, uma variável i e uma variável para o resultado.
+
+for (i = 0; i < 5; i++) { // Loop para preencher o vetor.
+vetor[i] = i * 2; // Cada posição do vetor recebe o valor de i * 2.
+}
+resultado = calcularResultado(vetor, 5); // Chama a função para somar os valores do
+vetor.
+printf("O resultado é: %d\n", resultado); // Imprime o resultado da soma.
+return 0; // Fim do programa.
+}
+
+int calcularResultado(int v[], int n) {
+int i, soma = 0; // Declara soma e a variável de controle i.
+for (i = 0; i < n; i++) { // Loop para somar os elementos do vetor.
+soma += v[i]; // Soma cada valor do vetor à variável soma.
+}
+return soma; // Retorna o valor total da soma.
+}
+
+
+
+//EXERCÍCIO 4
+#include <stdio.h>
+//marina cristini
+
+float calcularMedia(float nota1, float nota2, float nota3, float nota4) {
+    return (nota1 + nota2 + nota3 + nota4) / 4.0;
+}
+
+int main() {
+    float nota1, nota2, nota3, nota4, media;
+
+    printf("Digite a primeira nota: ");
+    scanf("%f", &nota1);
+    printf("Digite a segunda nota: ");
+    scanf("%f", &nota2);
+    printf("Digite a terceira nota: ");
+    scanf("%f", &nota3);
+    printf("Digite a quarta nota: ");
+    scanf("%f", &nota4);
+
+    media = calcularMedia(nota1, nota2, nota3, nota4);
+
+    printf("A média é: %.2f\n", media);
+    if (media >= 7.0) {
+        printf("Aprovado\n");
+    } else {
+        printf("Reprovado\n");
+    }
+
+    return 0;
+}
+
+
+
+
+//EXERCÍCIO 5
+#include <stdio.h>
+//marina cristini
+void impares(int limite) {
+    printf("Números ímpares de 1 até %d (exceto múltiplos de 7):\n", limite);
+    for (int i = 1; i <= limite; i++) {
+        if (i % 2 != 0 && i % 7 != 0) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+}
+int main() {
+    int numero;
+    printf("Digite um número: ");
+    scanf("%d", &numero);
+    impares(numero);
+    return 0;
+}
+
+//EXERCÍCIO 6
+#include <stdio.h>
+
+//marina cristini
+
+float somarValores(int vetor[], int tamanho) {
+    float soma = 0.0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += vetor[i];
+    }
+    return soma;
+}
+
+int main() {
+    int tamanho;
+
+    printf("Digite o número de elementos do vetor: ");
+    scanf("%d", &tamanho);
+
+    int vetor[tamanho];
+
+    for (int i = 0; i < tamanho; i++) {
+        printf("Digite o valor do elemento %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    float soma = somarValores(vetor, tamanho);
+    float media = soma / tamanho;
+
+    printf("Soma: %.2f\n", soma);
+    printf("Média: %.2f\n", media);
+
+    return 0;
+}
+
+
+
+
+//EXERCÍCIO 7
+#include <stdio.h>
+//marina cristini
+
+void maiorValor(int vetor[], int tamanho, int *maior, int *posicao) {
+    *maior = vetor[0];
+    *posicao = 0;
+
+    for (int i = 1; i < tamanho; i++) {
+        if (vetor[i] > *maior) {
+            *maior = vetor[i];
+            *posicao = i;
+        }
+    }
+}
+
+int main() {
+    int tamanho;
+
+    printf("Digite o número de elementos do vetor: ");
+    scanf("%d", &tamanho);
+
+    int vetor[tamanho];
+
+    for (int i = 0; i < tamanho; i++) {
+        printf("Digite o valor do elemento %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    int maior, posicao;
+
+    maiorValor(vetor, tamanho, &maior, &posicao);
+
+    printf("O maior valor é: %d\n", maior);
+    printf("Sua posição no vetor é: %d\n", posicao + 1); 
+
+    return 0;
+}
+
+
+
+//EXERCÍCIO 8
+#include <stdio.h>
+//marina cristini
+void pares(int numero) {
+    printf("Números pares de 1 até %d:\n", numero);
+    for (int i = 1; i <= numero; i++) {
+        if (i % 2 == 0) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+}
+int main() {
+    int numero;
+    printf("Digite um número inteiro: ");
+    scanf("%d", &numero);
+    pares(numero);
+    return 0;
+}
+
+//EXERCÍCIO 9
+#include <stdio.h>
+//marina cristini
+float multiplicarValores(int vetor[], int tamanho) {
+    float produto = 1.0;  
+    for (int i = 0; i < tamanho; i++) {
+        produto *= vetor[i];  
+    }
+    return produto; 
+}
+
+int main() {
+    int tamanho;
+    printf("Digite o número de elementos do vetor: ");
+    scanf("%d", &tamanho);
+
+    int vetor[tamanho];
+
+    for (int i = 0; i < tamanho; i++) {
+        printf("Digite o valor do elemento %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    float resultado = multiplicarValores(vetor, tamanho);
+
+    printf("Resultado da multiplicação: %.2f\n", resultado);
+
+    return 0;
+}
+
+
+
+//EXERCÍCIO 10
+
+#include <stdio.h>
+//marina cristini
+
+void maiorNumero(int num1, int num2) {
+    if (num1 > num2) {
+        printf("O maior número é: %d\n", num1);
+    } else if (num2 > num1) {
+        printf("O maior número é: %d\n", num2);
+    } else {
+        printf("Os números são iguais: %d\n", num1);
+    }
+}
+
+int main() {
+    int numero1, numero2;
+
+    printf("Digite o primeiro número inteiro: ");
+    scanf("%d", &numero1);
+    printf("Digite o segundo número inteiro: ");
+    scanf("%d", &numero2);
+
+    maiorNumero(numero1, numero2);
+
+    return 0;
+}
+
+
+//EXERCÍCIO 11
+#include <stdio.h>
+//marina cristini
+
+
+int menorNumero(int n1, int n2, int n3) {
+    int menor = n1; 
+
+    if (n2 < menor) {
+        menor = n2; 
+    }
+    if (n3 < menor) {
+        menor = n3; 
+    }
+
+    return menor; 
+}
+
+int main() {
+    int numero1, numero2, numero3;
+
+    printf("Digite o primeiro número inteiro: ");
+    scanf("%d", &numero1);
+    printf("Digite o segundo número inteiro: ");
+    scanf("%d", &numero2);
+    printf("Digite o terceiro número inteiro: ");
+    scanf("%d", &numero3);
+
+    int menor = menorNumero(numero1, numero2, numero3);
+
+    printf("O menor número é: %d\n", menor);
+
+    return 0;
+}
+
+
+
+
+//EXERCÍCIO 12
+
+#include <stdio.h>
+//marina cristini
+
+void inverso(int vetor[], int tamanho) {
+    printf("Números na ordem inversa:\n");
+    for (int i = tamanho - 1; i >= 0; i--) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int vetor[10]; 
+    printf("Digite 10 números inteiros:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("Número %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    inverso(vetor, 10);
+
+    return 0;
+}
+
+
+
+//EXERCÍCIO 13
+#include <stdio.h>
+//marina cristini
+
+
+float calcularMedia(int num1, int num2, int num3) {
+    return (num1 + num2 + num3) / 3.0; 
+}
+
+int main() {
+    int numero1, numero2, numero3;
+
+    printf("Digite o primeiro número inteiro: ");
+    scanf("%d", &numero1);
+    printf("Digite o segundo número inteiro: ");
+    scanf("%d", &numero2);
+    printf("Digite o terceiro número inteiro: ");
+    scanf("%d", &numero3);
+
+    float media = calcularMedia(numero1, numero2, numero3);
+
+    printf("A média é: %.2f\n", media);
+
+    return 0;
+}
+
+
+//EXERCÍCIO 14
+#include <stdio.h>
+//marina cristini
+
+int calcularResultado(int soma, int primeiroValor, int ultimoValor) {
+    return soma + (primeiroValor * 5) + (ultimoValor * 2);
+}
+
+int main() {
+    int vetor[10]; 
+    int soma = 0;
+
+  
+    for (int i = 0; i < 10; i++) {
+        vetor[i] = i + 1; 
+        soma += vetor[i]; 
+    }
+
+
+    int primeiroValor = vetor[0]; 
+    int ultimoValor = vetor[9];    
+    int resultado = calcularResultado(soma, primeiroValor, ultimoValor);
+
+    printf("O resultado é: %d\n", resultado);
+
+    return 0;
+}
