@@ -1,3 +1,29 @@
+//EXERCÍCIO 1
+
+#include <stdio.h>
+
+int main() {
+    int pontuacao[3][5];
+    int total[3] = {0, 0, 0};
+    int vencedor = 0;
+
+    for (int i = 0; i < 3; i++) {
+        printf("Jogador %d:\n", i + 1);
+        for (int j = 0; j < 5; j++) {
+            scanf("%d", &pontuacao[i][j]);
+            total[i] += pontuacao[i][j];
+        }
+        if (total[i] > total[vencedor]) {
+            vencedor = i;
+        }
+    }
+
+    printf("Vencedor: Jogador %d com %d pontos!\n", vencedor + 1, total[vencedor]);
+
+    return 0;
+}
+
+//EXERCÍCIO 1
 #include <stdio.h>
 
 int main() {
