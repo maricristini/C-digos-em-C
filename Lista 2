@@ -1,144 +1,175 @@
 //EXERCÍCIO 2
+
 #include <stdio.h>
 
-//marina cristini
+// Marina Cristini
 
+// Função para calcular a média de uma turma
 float mediaTurma(int numeroAlunos) {
-   
     float soma = 0.0, nota;
 
+    // Loop para ler as notas de todos os alunos da turma
     for (int i = 0; i < numeroAlunos; i++) {
         printf("Digite a nota do aluno %d: ", i + 1);
-        scanf("%f", &nota);
-        soma += nota;
+        scanf("%f", &nota);  // Lê a nota do aluno
+        soma += nota;  // Soma as notas
     }
 
+    // Retorna a média da turma
     return soma / numeroAlunos; 
 }
 
+// Função para calcular a média geral da escola
 float mediaEscola(int numeroTurmas) {
-  
     float somaMediaTurmas = 0.0;
 
+    // Loop para calcular a média de cada turma
     for (int i = 0; i < numeroTurmas; i++) {
         int numAlunos;
+
+        // Solicita o número de alunos da turma
         printf("Digite o número de alunos da turma %d: ", i + 1);
-        scanf("%d", &numeroAlunos);
+        scanf("%d", &numAlunos);  // Lê o número de alunos da turma
         
-        float media = mediaTurma(numeroAlunos);
+        // Chama a função 'mediaTurma' para calcular a média de cada turma
+        float media = mediaTurma(numAlunos);
+        
+        // Exibe a média da turma
         printf("A média da turma %d é: %.2f\n", i + 1, media);
         
+        // Soma a média das turmas para calcular a média geral da escola
         somaMediaTurmas += media; 
     }
 
+    // Retorna a média geral da escola
     return somaMediaTurmas / numeroTurmas; 
 }
 
 int main() {
     int numeroTurmas;
+
+    // Solicita o número de turmas da escola
     printf("Digite o número de turmas: ");
-    scanf("%d", &numeroTurmas);
+    scanf("%d", &numeroTurmas);  // Lê o número de turmas
     
+    // Chama a função 'mediaEscola' para calcular a média geral da escola
     float mediaGeral = mediaEscola(numeroTurmas);
+    
+    // Exibe a média geral da escola
     printf("A média geral da escola é: %.2f\n", mediaGeral);
 
     return 0;
 }
 
 //EXERCÍCIO 3
-
 #include <stdio.h>
 
-//marina cristini
+// Marina Cristini
 
+// Função para calcular o enésimo número de Fibonacci
 int fibonacci(int n) {
-   
+    // Se n for menor ou igual a 0, retorna 0
     if (n <= 0) return 0;
+    
+    // Se n for 1, retorna 1
     if (n == 1) return 1;
 
+    // Variáveis para armazenar os dois últimos números da sequência
     int a = 0, b = 1, c;
+
+    // Laço para calcular os números de Fibonacci de 2 até n
     for (int i = 2; i <= n; i++) {
-        c = a + b; 
-        a = b;
-        b = c;
+        c = a + b;  // Calcula o próximo número na sequência
+        a = b;      // Atualiza a para o valor de b
+        b = c;      // Atualiza b para o novo valor de c
     }
+
+    // Retorna o enésimo número de Fibonacci
     return b; 
 }
 
 int main() {
     int n;
+
+    // Solicita ao usuário um valor de n
     printf("Digite um valor: ");
-    scanf("%d", &n);
+    scanf("%d", &n);  // Lê o valor de n
     
+    // Chama a função 'fibonacci' para calcular o enésimo número
     int resultado = fibonacci(n);
-    printf("O resultado é: %d\n", n, resultado);
+    
+    // Exibe o resultado
+    printf("O resultado é: %d\n", resultado);
 
     return 0;
 }
 
-
-//EXERCÍCIO 5
-Código Fonte:
+// EXERCÍCIO 5
 #include <stdio.h>
 
-//marina cristini
+// Marina Cristini
 
-int soma(int a, int b);
+// Função para calcular a soma de dois números
+int soma(int a, int b) {
+    return a + b;  // Retorna a soma dos dois números
+}
 
 int main() {
     int numero1, numero2, resultado;
 
+    // Solicita ao usuário o primeiro número inteiro
     printf("Digite o primeiro número inteiro: ");
-    scanf("%d", &numero1);
+    scanf("%d", &numero1);  // Lê o primeiro número
+    
+    // Solicita ao usuário o segundo número inteiro
     printf("Digite o segundo número inteiro: ");
-    scanf("%d", &numero2);
+    scanf("%d", &numero2);  // Lê o segundo número
 
-
+    // Chama a função 'soma' para calcular a soma dos números
     resultado = soma(numero1, numero2);
 
-
+    // Exibe o resultado da soma
     printf("A soma de %d e %d é: %d\n", numero1, numero2, resultado);
 
     return 0;
 }
 
-
-int soma(int a, int b) {
-    return a + b; 
-    
-
 //EXERCÍCIO 7
-Código Fonte:
 
 #include <stdio.h>
 
-//marina cristini
+// Marina Cristini
 
-int soma(int vetor[], int tamanho);
+// Função para calcular a soma dos elementos de um vetor
+int soma(int vetor[], int tamanho) {
+    int soma = 0;  // Inicializa a variável soma com 0
 
-int main() {
-    int numeros[3]; 
-   
-    for (int i = 0; i < 3; i++) {
-        printf("Digite o número: ", i + 1);
-        scanf("%d", &numeros[i]);
+    // Laço para percorrer todos os elementos do vetor e somá-los
+    for (int i = 0; i < tamanho; i++) {
+        soma += vetor[i];  // Adiciona o valor do elemento atual do vetor à variável soma
     }
 
+    // Retorna a soma de todos os elementos do vetor
+    return soma; 
+}
+
+int main() {
+    int numeros[3];  // Declara um vetor para armazenar 3 números
+    
+    // Laço para ler os 3 números do usuário
+    for (int i = 0; i < 3; i++) {
+        // Solicita ao usuário que digite um número
+        printf("Digite o número %d: ", i + 1);  
+        scanf("%d", &numeros[i]);  // Lê o número digitado e armazena no vetor
+    }
+
+    // Chama a função soma, passando o vetor de números e seu tamanho (3)
     int resultado = soma(numeros, 3);
 
-   
+    // Exibe o resultado da soma dos elementos do vetor
     printf("A soma é: %d\n", resultado);
 
     return 0;
 }
 
 
-int soma(int vetor[], int tamanho) {
-    int soma = 0; 
-
-    for (int i = 0; i < tamanho; i++) {
-        soma += vetor[i]; 
-    }
-
-    return soma; 
-}
